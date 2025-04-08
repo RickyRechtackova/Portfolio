@@ -9,11 +9,12 @@ let left = document.getElementById("button-left");
 
 let characterImages = [];
 let index = 0;
+let imageContainer = document.getElementById("character-grid");
+let children = Array.from(imageContainer.children);
+
 
 // looping though the children of the grid container to get all divs
 function setUp(){
-    let imageContainer = document.getElementById("character-grid");
-    let children = Array.from(imageContainer.children);
     let that = this;
     for(let i=0; i < children.length; i++){
         const CHILD = children[i];
@@ -37,10 +38,10 @@ function viewGallery(src, order){
     else if(index > 0){
         left.style.display = "block";
     }
-    if(index == 1){
+    if(index == children.length-1){
         right.style.display = "none";
     }
-    else if(index < 1){
+    else if(index < children.length-1){
         right.style.display = "block";
     }
 }
@@ -53,7 +54,7 @@ right.onclick = function(){
     if(index > 0){
         left.style.display = "block"
     }
-    if(index == 1){
+    if(index == children.length-1){
         right.style.display ="none";
     }
 }
@@ -62,7 +63,7 @@ left.onclick = function(){
     index--;
     console.log(index)
     modal.querySelector("#gallery-portrait").src = characterImages[index];
-    if(index < 1){
+    if(index < children.length-1){
         right.style.display = "block"
     }
     if(index == 0){
